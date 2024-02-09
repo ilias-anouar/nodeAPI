@@ -12,6 +12,12 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*"); // disabled for security on local
+    res.header("Access-Control-Allow-Headers", "Content-Type");
+    next();
+});
+
 const routes = require("./routes");
 app.use(`/api/${v}`, routes);
 
