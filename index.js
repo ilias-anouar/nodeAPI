@@ -11,7 +11,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(bodyParser.json())
-app.use(cors());
 app.set('trust proxy', true)
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*"); // disabled for security on local
