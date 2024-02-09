@@ -1,5 +1,6 @@
-const { json } = require('body-parser');
 const fs = require('fs')
+const dotenv = require('dotenv')
+const result = dotenv.config()
 const path = __dirname
 console.log(path);
 
