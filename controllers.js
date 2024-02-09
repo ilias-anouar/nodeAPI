@@ -1,12 +1,9 @@
-const { json } = require('body-parser');
 const fs = require('fs')
-const path = __dirname
-console.log(path);
 
 const saveMessage = (req, res) => {
     let data = (req.body)
     let name = (data.name)
-    fs.writeFile(`${path}/messages/${name}.json`, `${JSON.stringify(data)}`, 'utf-8', (e) => {
+    fs.writeFile(`./messages/${name}.json`, `${JSON.stringify(data)}`, 'utf-8', (e) => {
         if (e) {
             console.log(e);
             res.status(500).send(e.code)
@@ -17,7 +14,7 @@ const saveMessage = (req, res) => {
 
 const readMessage = (req, res) => {
     let messages = []
-    let dir = `${path}/messages/`
+    let dir = `./messages/`
     try {
         let fileObjs = fs.readdirSync(dir).map(function (v) {
             return {
@@ -40,7 +37,7 @@ const readMessage = (req, res) => {
 
 const readMessageName = (req, res) => {
     let message = req.params.name
-    let dir = `${path}/messages/`
+    let dir = `./messages/`
     let messages = []
     let filePath = `${dir}/${message}.json`
     try {
@@ -54,7 +51,7 @@ const readMessageName = (req, res) => {
 
 const deleteMessage = (req, res) => {
     let message = req.params.name
-    let dir = `${path}/messages/${message}.json`
+    let dir = `./messages/${message}.json`
     try {
         fs.unlinkSync(`${dir}`)
         res.status(200).send('Deleted')
