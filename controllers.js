@@ -3,6 +3,7 @@ const fs = require('fs')
 const saveMessage = (req, res) => {
     let data = (req.body)
     let name = (data.name)
+    console.log(data);
     fs.writeFile(`./messages/${name}.json`, `${JSON.stringify(data)}`, 'utf-8', (e) => {
         if (e) {
             console.log(e);
